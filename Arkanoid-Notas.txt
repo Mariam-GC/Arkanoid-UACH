@@ -1,0 +1,94 @@
+Arkanoid
+++++++++++++++++++++++++++++++++++++++++++++
+Backraundcolor
+Insertar imagen en SimpleSence
+Transofrm
+Size (Tamaño de camara)
+Free aspect 16:9, es la básica que tienen las televisiones.
+Circle .5 .5 .5
+Square 3 .5 .5
+Brick 2 .5 1 (No necesitan rigibody Porque están estáticos).
+Add Componente "rigibody 2d" para añadir condiciones físicas
+*Activar gizmos para ver los componentes del juego*
+++++++++++++++++++++++++++++++++++++++++++++
+Para hacer carpetas...
+1. en proyecto
+2.assets
+3. create
+4. Folder prefabs
+5.Arrastro el elemento que quiero conservar por si acazo.
+
+++++++++++++++++++++++++++++++++++++++++++++
+
+Para hacer que un cuerpo no tenga gravedad tiene que tener masa 0 y gravity 0
+
+Para que dos elementos colisionen ente ellos se utiliza la condición de box colaider.
+
+Se selecciona un objeto + F para centrar elementos.
+
++++++++++++++++++++++++++++++++++++++++++++++
+  Usar el gidmo (flecha) para ir moviendo por unidades y de manera recta.
+
+Seleccionar + control +D para copipage automatic. (para los brick)
+++++++++++++++++++++++++++++++++++++++++++++++ 
+Crear un empty en SampleScence/Game object
+Colocarle nombre de mapa, cordenadas en 0 0 0 y traspasar los brick a èl.
+++++++++++++++++++++++++++++++++++++++++++++++++
+ 
+Colocar bordes para que no se caiga la pelotita, con 4 square, con tecla R se puede escalar manualmente E para rotar.
+Desactivarlo para evitar ver el color.
+No olvidar poner el Box colaider
+Agregar otro Empty y colocar ahi los walls
+++++++++++++++++++++++++++++++++++++++++++++++++
+En la carpeta de Assets agregar un new folder "SCRIPTS"
+luego un nuevo C# Script para empezar con la PROGRAMACIÓN
++++++++++++++++++++++++++++++++++++++++++++++
+Borrar comentarios y cosas no necesarias
+ en public class player poner:
+
+public rigibody2d rigibody2d;
+private float (Numero decimal en positivo y negativo, para definir valores de izquierda a derecha) con nombre inputvalue.
+Public float moveSpeed = 25; (para la velocidad)
+Private vector2 direction;
+
+//Se dice pública para poder modificar los valores desde Unity.
+
+Ir a unity y arrastrar el C# a el Player
+
+++++++++++++++++++++++++++++++++++++++++++++++++
+	InputValue = Input.GetAxisRaw("Horizontal"); Para hacer funcionar las teclas de A y D o flechas izquierda y derecha.
+
+1 es derecha por ser positivo
+ -1 es izquierda por ser negativo
+
+Colocar los IF
+
+ inputValue = Input.GetAxisRaw("Horizontal");
+
+        if(inputValue == 1)
+        {
+            direction = Vector2.right;
+        }
+        else if(inputValue == -1) 
+        {
+            direction = Vector2.left;
+        }
+        else
+        {
+            direction = Vector2.zero;
+        }
+    }
+
+agregar 
+rigidbody2.AddForce(direction * moveSpeed * Time.deltaTime * 100);
+
+Poner masa de 1 a player
+En Rigibody/constrains quitar los movimientos en Y y en Z.
+
+Lineal Drag : coficiente de friccion, ponerlo a 4
+++++++++++++++++++++++++++++++++++++++
+Para que un componente rebote se le agrega un fisical matirial
+
+
+
+
